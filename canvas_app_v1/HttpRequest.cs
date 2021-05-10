@@ -31,6 +31,29 @@ namespace canvas_app_v1
             return response;
         }
 
+        // Method to perform GET requests to retrieve items:
+        public static async Task<dynamic> get_item_at_url(string base_url, string access_token, string url_command)
+        {
+            string return_val = string.Empty;
+
+            using (HttpResponseMessage response = await http_get(base_url, access_token, url_command))
+            {
+                return_val = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("String from response: " + return_val);
+
+                if (!response.IsSuccessStatusCode || (return_val.Contains("errors") && return_val.Contains("message")))
+                {
+                    Console.WriteLine("Retrieval failed because: " + response.StatusCode + " " + response.ReasonPhrase + ".");
+                    Console.WriteLine("Access Token: " + access_token);
+                    Console.WriteLine("Url : " + base_url + url_command);
+                    throw new HttpRequestException(return_val);
+                }
+            }
+
+            Console.WriteLine("Return_val after function completion: " + return_val);
+            return JsonConvert.DeserializeObject(return_val);
+        }
+
         // Method to perform PUT requests:
         public static async Task<HttpResponseMessage> http_put(string base_url, string access_token, string url_command, HttpContent content)
         {
@@ -49,6 +72,13 @@ namespace canvas_app_v1
 
             Console.WriteLine("Response from http_put: " + response);
             return response;
+        }
+
+        // Method to perform PUT requests to accomplish tasks: (may implement methods for custom
+        // PUT requests at some point)
+        public static async Task<dynamic> put_item_at_url(string base_url, string access_token, string url_command)
+        {
+            
         }
     }
 }
