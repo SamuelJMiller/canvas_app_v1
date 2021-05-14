@@ -50,7 +50,7 @@ namespace canvas_app_v1
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.main_split);
             this.Name = "main_form";
-            this.Text = "Form1";
+            this.Text = "Canvas Hub";
             ((System.ComponentModel.ISupportInitialize)(this.main_split)).EndInit();
             this.main_split.ResumeLayout(false);
             this.ResumeLayout(false);
