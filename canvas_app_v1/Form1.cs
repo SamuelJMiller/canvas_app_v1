@@ -19,6 +19,5 @@ namespace canvas_app_v1
         {
             InitializeComponent();
         }
-
     }
 }

@@ -29,7 +29,9 @@ namespace canvas_app_v1
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.main_split = new System.Windows.Forms.SplitContainer();
+            this.context_menu = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.main_split)).BeginInit();
             this.main_split.SuspendLayout();
             this.SuspendLayout();
@@ -42,6 +44,11 @@ namespace canvas_app_v1
             this.main_split.Size = new System.Drawing.Size(800, 450);
             this.main_split.SplitterDistance = 266;
             this.main_split.TabIndex = 0;
+            // 
+            // context_menu
+            // 
+            this.context_menu.Name = "context_menu";
+            this.context_menu.Size = new System.Drawing.Size(61, 4);
             // 
             // main_form
             // 
@@ -60,6 +67,7 @@ namespace canvas_app_v1
         #endregion
 
         private System.Windows.Forms.SplitContainer main_split;
+        private System.Windows.Forms.ContextMenuStrip context_menu;
     }
 }
 
