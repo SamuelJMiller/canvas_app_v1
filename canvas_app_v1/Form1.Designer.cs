@@ -30,20 +30,8 @@ namespace canvas_app_v1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.main_split = new System.Windows.Forms.SplitContainer();
             this.context_menu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.main_split)).BeginInit();
-            this.main_split.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // main_split
-            // 
-            this.main_split.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.main_split.Location = new System.Drawing.Point(0, 0);
-            this.main_split.Name = "main_split";
-            this.main_split.Size = new System.Drawing.Size(800, 450);
-            this.main_split.SplitterDistance = 266;
-            this.main_split.TabIndex = 0;
             // 
             // context_menu
             // 
@@ -55,18 +43,13 @@ namespace canvas_app_v1
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.main_split);
             this.Name = "main_form";
             this.Text = "Canvas Hub";
-            ((System.ComponentModel.ISupportInitialize)(this.main_split)).EndInit();
-            this.main_split.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.SplitContainer main_split;
         private System.Windows.Forms.ContextMenuStrip context_menu;
     }
 }
