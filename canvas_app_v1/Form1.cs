@@ -13,9 +13,9 @@ using Newtonsoft.Json;
 
 namespace canvas_app_v1
 {
-    public partial class Form1 : Form
+    public partial class main_form : Form
     {
-        public Form1()
+        public main_form()
         {
             InitializeComponent();
         }
