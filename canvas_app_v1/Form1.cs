@@ -19,5 +19,14 @@ namespace canvas_app_v1
         {
             InitializeComponent();
         }
+
+        private void main_form_Load(object sender, EventArgs e)
+        {
+            main_menu.Items.Add("File");
+
+            (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Save and Upload");
+            (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Close App");
+            (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Log Out");
+        }
     }
 }
