@@ -29,24 +29,24 @@ namespace canvas_app_v1
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Student Roster");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Syllabus");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Page1");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Page2");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Class1", new System.Windows.Forms.TreeNode[] {
-            treeNode11,
-            treeNode12,
-            treeNode13,
-            treeNode14});
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Student Roster");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Syllabus");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Page1");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Page2");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Class2", new System.Windows.Forms.TreeNode[] {
-            treeNode16,
-            treeNode17,
-            treeNode18,
-            treeNode19});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Student Roster");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Syllabus");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Page1");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Page2");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Class1", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Student Roster");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Syllabus");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Page1");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Page2");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Class2", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
+            treeNode7,
+            treeNode8,
+            treeNode9});
             this.main_menu = new System.Windows.Forms.MenuStrip();
             this.outer_panel = new System.Windows.Forms.Panel();
             this.main_tree = new System.Windows.Forms.TreeView();
@@ -80,31 +80,33 @@ namespace canvas_app_v1
             // 
             // main_tree
             // 
+            this.main_tree.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.main_tree.Location = new System.Drawing.Point(-1, 34);
             this.main_tree.Name = "main_tree";
-            treeNode11.Name = "Node1";
-            treeNode11.Text = "Student Roster";
-            treeNode12.Name = "Node2";
-            treeNode12.Text = "Syllabus";
-            treeNode13.Name = "Node3";
-            treeNode13.Text = "Page1";
-            treeNode14.Name = "Node4";
-            treeNode14.Text = "Page2";
-            treeNode15.Name = "Node0";
-            treeNode15.Text = "Class1";
-            treeNode16.Name = "Node6";
-            treeNode16.Text = "Student Roster";
-            treeNode17.Name = "Node7";
-            treeNode17.Text = "Syllabus";
-            treeNode18.Name = "Node8";
-            treeNode18.Text = "Page1";
-            treeNode19.Name = "Node9";
-            treeNode19.Text = "Page2";
-            treeNode20.Name = "Node5";
-            treeNode20.Text = "Class2";
+            treeNode1.Name = "Node1";
+            treeNode1.Text = "Student Roster";
+            treeNode2.Name = "Node2";
+            treeNode2.Text = "Syllabus";
+            treeNode3.Name = "Node3";
+            treeNode3.Text = "Page1";
+            treeNode4.Name = "Node4";
+            treeNode4.Text = "Page2";
+            treeNode5.Name = "Node0";
+            treeNode5.Text = "Class1";
+            treeNode6.Name = "Node6";
+            treeNode6.Text = "Student Roster";
+            treeNode7.Name = "Node7";
+            treeNode7.Text = "Syllabus";
+            treeNode8.Name = "Node8";
+            treeNode8.Text = "Page1";
+            treeNode9.Name = "Node9";
+            treeNode9.Text = "Page2";
+            treeNode10.Name = "Node5";
+            treeNode10.Text = "Class2";
             this.main_tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode15,
-            treeNode20});
+            treeNode5,
+            treeNode10});
             this.main_tree.Size = new System.Drawing.Size(200, 388);
             this.main_tree.TabIndex = 2;
             // 
@@ -129,6 +131,9 @@ namespace canvas_app_v1
             // 
             // right_panel
             // 
+            this.right_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.right_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.right_panel.Location = new System.Drawing.Point(206, 27);
             this.right_panel.Name = "right_panel";
