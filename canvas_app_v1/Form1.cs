@@ -27,15 +27,67 @@ namespace canvas_app_v1
             this.Controls.Add(hec);
             hec.Parent = right_panel;
             hec.Dock = DockStyle.Fill;
+            hec.Name = "main_editor";
         }
 
         private void main_form_Load(object sender, EventArgs e)
         {
+            // Add menu items:
             main_menu.Items.Add("File");
 
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Save and Upload");
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Close App");
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Log Out");
+
+            // Expand first class node in TreeView, if exists:
+            if (main_tree.Nodes[0].Nodes.Count > 0) // If node is an actuall class, not just the message
+            {
+                main_tree.Nodes[0].Expand();
+            }
+
+            //AddHtmlEditor();
+        }
+
+        private void main_tree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            // If node selected is a child node:
+            if (main_tree.SelectedNode.Parent != null)
+            {
+                // Iterate through controls and remove the old editor:
+                foreach ( Control c in this.Controls )
+                {
+                    if (c.Name == "main_editor")
+                    {
+                        this.Controls.Remove(c);
+                    }
+                }
+
+                // Add new editor:
+                /*AddHtmlEditor();
+
+                // Setup next text in new editor:
+                for ( int i = 0; i < this.Controls.Count; ++i )
+                {
+                    if (this.Controls[i].Name == "main_editor")
+                    {
+                        HTMLEditControl hec = (HTMLEditControl) this.Controls[i];
+
+                        // | TEMPORARY - REPLACE WITH PAGE TEXT |
+                        
+                    }
+                }*/
+            }  else
+            {
+                // Close all nodes except for the selected one, which is expanded:
+                main_tree.SelectedNode.Expand();
+                foreach ( TreeNode n in main_tree.Nodes )
+                {
+                    if (n != main_tree.SelectedNode)
+                    {
+                        n.Collapse();
+                    }
+                }
+            }
         }
     }
 }
