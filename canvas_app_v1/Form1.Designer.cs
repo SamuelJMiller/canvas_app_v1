@@ -49,10 +49,11 @@ namespace canvas_app_v1
             treeNode9});
             this.main_menu = new System.Windows.Forms.MenuStrip();
             this.outer_panel = new System.Windows.Forms.Panel();
-            this.main_tree = new System.Windows.Forms.TreeView();
             this.inner_panel = new System.Windows.Forms.Panel();
             this.classes_label = new System.Windows.Forms.Label();
             this.right_panel = new System.Windows.Forms.Panel();
+            this.main_tree = new System.Windows.Forms.TreeView();
+            this.new_page_button = new System.Windows.Forms.Button();
             this.outer_panel.SuspendLayout();
             this.inner_panel.SuspendLayout();
             this.SuspendLayout();
@@ -71,12 +72,43 @@ namespace canvas_app_v1
             | System.Windows.Forms.AnchorStyles.Left)));
             this.outer_panel.BackColor = System.Drawing.SystemColors.Control;
             this.outer_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.outer_panel.Controls.Add(this.new_page_button);
             this.outer_panel.Controls.Add(this.main_tree);
             this.outer_panel.Controls.Add(this.inner_panel);
             this.outer_panel.Location = new System.Drawing.Point(0, 27);
             this.outer_panel.Name = "outer_panel";
             this.outer_panel.Size = new System.Drawing.Size(200, 423);
             this.outer_panel.TabIndex = 1;
+            // 
+            // inner_panel
+            // 
+            this.inner_panel.BackColor = System.Drawing.Color.White;
+            this.inner_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.inner_panel.Controls.Add(this.classes_label);
+            this.inner_panel.Location = new System.Drawing.Point(-1, -1);
+            this.inner_panel.Name = "inner_panel";
+            this.inner_panel.Size = new System.Drawing.Size(200, 29);
+            this.inner_panel.TabIndex = 1;
+            // 
+            // classes_label
+            // 
+            this.classes_label.AutoSize = true;
+            this.classes_label.Location = new System.Drawing.Point(68, 6);
+            this.classes_label.Name = "classes_label";
+            this.classes_label.Size = new System.Drawing.Size(65, 15);
+            this.classes_label.TabIndex = 0;
+            this.classes_label.Text = "My Classes";
+            // 
+            // right_panel
+            // 
+            this.right_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.right_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.right_panel.Location = new System.Drawing.Point(206, 27);
+            this.right_panel.Name = "right_panel";
+            this.right_panel.Size = new System.Drawing.Size(594, 423);
+            this.right_panel.TabIndex = 2;
             // 
             // main_tree
             // 
@@ -110,35 +142,14 @@ namespace canvas_app_v1
             this.main_tree.Size = new System.Drawing.Size(200, 388);
             this.main_tree.TabIndex = 2;
             // 
-            // inner_panel
+            // new_page_button
             // 
-            this.inner_panel.BackColor = System.Drawing.Color.White;
-            this.inner_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.inner_panel.Controls.Add(this.classes_label);
-            this.inner_panel.Location = new System.Drawing.Point(-1, -1);
-            this.inner_panel.Name = "inner_panel";
-            this.inner_panel.Size = new System.Drawing.Size(200, 29);
-            this.inner_panel.TabIndex = 1;
-            // 
-            // classes_label
-            // 
-            this.classes_label.AutoSize = true;
-            this.classes_label.Location = new System.Drawing.Point(68, 6);
-            this.classes_label.Name = "classes_label";
-            this.classes_label.Size = new System.Drawing.Size(65, 15);
-            this.classes_label.TabIndex = 0;
-            this.classes_label.Text = "My Classes";
-            // 
-            // right_panel
-            // 
-            this.right_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.right_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.right_panel.Location = new System.Drawing.Point(206, 27);
-            this.right_panel.Name = "right_panel";
-            this.right_panel.Size = new System.Drawing.Size(594, 423);
-            this.right_panel.TabIndex = 2;
+            this.new_page_button.Location = new System.Drawing.Point(58, 368);
+            this.new_page_button.Name = "new_page_button";
+            this.new_page_button.Size = new System.Drawing.Size(84, 23);
+            this.new_page_button.TabIndex = 3;
+            this.new_page_button.Text = "New Page";
+            this.new_page_button.UseVisualStyleBackColor = true;
             // 
             // main_form
             // 
@@ -149,7 +160,7 @@ namespace canvas_app_v1
             this.Controls.Add(this.outer_panel);
             this.Controls.Add(this.main_menu);
             this.Name = "main_form";
-            this.Text = "Canvas Hub";
+            this.Text = "Canvas Page Manager";
             this.Load += new System.EventHandler(this.main_form_Load);
             this.outer_panel.ResumeLayout(false);
             this.inner_panel.ResumeLayout(false);
@@ -166,6 +177,7 @@ namespace canvas_app_v1
         private System.Windows.Forms.Label classes_label;
         private System.Windows.Forms.Panel inner_panel;
         private System.Windows.Forms.Panel right_panel;
+        private System.Windows.Forms.Button new_page_button;
         private System.Windows.Forms.TreeView main_tree;
     }
 }
