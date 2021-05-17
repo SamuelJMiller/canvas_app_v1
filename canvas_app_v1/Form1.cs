@@ -27,6 +27,8 @@ namespace canvas_app_v1
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Save and Upload");
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Close App");
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Log Out");
+
+            MessageBox.Show(((main_tree.Width / 2) - (new_page_button.Width / 2)).ToString());
         }
     }
 }
