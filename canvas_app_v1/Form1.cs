@@ -45,7 +45,7 @@ namespace canvas_app_v1
                 main_tree.Nodes[0].Expand();
             }
 
-            //AddHtmlEditor();
+            AddHtmlEditor();
         }
 
         private void main_tree_AfterSelect(object sender, TreeViewEventArgs e)
@@ -53,14 +53,9 @@ namespace canvas_app_v1
             // If node selected is a child node:
             if (main_tree.SelectedNode.Parent != null)
             {
-                // Iterate through controls and remove the old editor:
-                foreach ( Control c in this.Controls )
-                {
-                    if (c.Name == "main_editor")
-                    {
-                        this.Controls.Remove(c);
-                    }
-                }
+                // Remove the old editor:
+                HTMLEditControl hec = this.Controls.Find("main_editor", false).First() as HTMLEditControl;
+                this.Controls.Remove(hec);
 
                 // Add new editor:
                 /*AddHtmlEditor();
