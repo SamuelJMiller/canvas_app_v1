@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using Zoople;
 
 namespace canvas_app_v1
 {
@@ -20,6 +21,14 @@ namespace canvas_app_v1
             InitializeComponent();
         }
 
+        private void AddHtmlEditor()
+        {
+            HTMLEditControl hec = new HTMLEditControl();
+            this.Controls.Add(hec);
+            hec.Parent = right_panel;
+            hec.Dock = DockStyle.Fill;
+        }
+
         private void main_form_Load(object sender, EventArgs e)
         {
             main_menu.Items.Add("File");
@@ -27,8 +36,6 @@ namespace canvas_app_v1
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Save and Upload");
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Close App");
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Log Out");
-
-            MessageBox.Show(((main_tree.Width / 2) - (new_page_button.Width / 2)).ToString());
         }
     }
 }
