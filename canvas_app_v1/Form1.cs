@@ -44,8 +44,6 @@ namespace canvas_app_v1
             {
                 main_tree.Nodes[0].Expand();
             }
-
-            AddHtmlEditor();
         }
 
         private void main_tree_AfterSelect(object sender, TreeViewEventArgs e)
@@ -54,8 +52,10 @@ namespace canvas_app_v1
             if (main_tree.SelectedNode.Parent != null)
             {
                 // Remove the old editor:
-                HTMLEditControl hec = right_panel.Controls.Find("main_editor", false).First() as HTMLEditControl;
-                hec.Dispose();
+                if (right_panel.Controls.Find("main_editor", false).Count() > 0) {
+                    HTMLEditControl hec = right_panel.Controls.Find("main_editor", false).First() as HTMLEditControl;
+                    hec.Dispose();
+                }
 
                 // Add new editor:
                 AddHtmlEditor();
