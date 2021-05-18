@@ -58,19 +58,12 @@ namespace canvas_app_v1
                 hec.Dispose();
 
                 // Add new editor:
-                /*AddHtmlEditor();
+                AddHtmlEditor();
 
-                // Setup next text in new editor:
-                for ( int i = 0; i < this.Controls.Count; ++i )
-                {
-                    if (this.Controls[i].Name == "main_editor")
-                    {
-                        HTMLEditControl hec = (HTMLEditControl) this.Controls[i];
-
-                        // | TEMPORARY - REPLACE WITH PAGE TEXT |
-                        
-                    }
-                }*/
+                // Add page text to new editor:
+                HTMLEditControl new_hec = right_panel.Controls.Find("main_editor", false).First() as HTMLEditControl;
+                // TODO ------ MAKE THIS BE THE ACTUAL CANVAS CLASS PAGE TEXT WHEN STUFF IS READY ------------------------------------
+                new_hec.DocumentHTML = main_tree.SelectedNode.Text;
             }  else
             {
                 // Close all nodes except for the selected one, which is expanded:
