@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Configuration;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http;
@@ -43,22 +44,42 @@ namespace canvas_app_v1
             hec.Dock = DockStyle.Fill;
             hec.Name = "main_editor";
 
-            RemoveLabels();
+            RemoveLabels(); // No more need for labels
+
+            (main_menu.Items[1] as ToolStripMenuItem).DropDownItems[0].Enabled = false; // Disable if no more labels
         }
 
         private void main_form_Load(object sender, EventArgs e)
         {
             // Add menu items:
             main_menu.Items.Add("File");
+            main_menu.Items.Add("Options");
 
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Save and Upload");
+
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Close App");
+
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Log Out");
+
+            (main_menu.Items[1] as ToolStripMenuItem).DropDownItems.Add("Toggle Tutorial");
+            (main_menu.Items[1] as ToolStripMenuItem).DropDownItems[0].Click += new EventHandler(tutorial_toggle_click);
 
             // Expand first class node in TreeView, if exists:
             if (main_tree.Nodes[0].Nodes.Count > 0) // If node is an actuall class, not just the message
             {
                 main_tree.Nodes[0].Expand();
+            }
+
+            // Show tutorial depending on user setting:
+            string saved_tutorialSetting = ConfigurationManager.AppSettings["tutorialEnabled"];
+
+            if (saved_tutorialSetting == "false")
+            {
+                Label[] tut_labels = { tut_label_top, tut_label_bottom_1, tut_label_bottom_2 };
+                foreach ( Label l in tut_labels )
+                {
+                    l.Visible = false;
+                }
             }
         }
 
@@ -93,6 +114,34 @@ namespace canvas_app_v1
                     {
                         n.Collapse();
                     }
+                }
+            }
+        }
+
+        // Toggle tutorial on/off:
+        private void tutorial_toggle_click(object sender, EventArgs e)
+        {
+            Label[] tut_labels = { tut_label_top, tut_label_bottom_1, tut_label_bottom_2 };
+            ConfigurationUserLevel security = ConfigurationUserLevel.None;
+            Configuration config = ConfigurationManager.OpenExeConfiguration(security);
+            AppSettingsSection app = config.AppSettings;
+
+            // If visible, make invisible:
+            if (tut_label_top.Visible && tut_label_bottom_1.Visible && tut_label_bottom_2.Visible)
+            {
+                foreach ( Label l in tut_labels )
+                {
+                    app.Settings.Remove("tutorialEnabled");
+                    app.Settings.Add("tutorialEnabled", "false");
+                    l.Visible = false;
+                }
+            } else // Otherwise do the opposite:
+            {
+                foreach (Label l in tut_labels)
+                {
+                    app.Settings.Remove("tutorialEnabled");
+                    app.Settings.Add("tutorialEnabled", "true");
+                    l.Visible = true;
                 }
             }
         }
