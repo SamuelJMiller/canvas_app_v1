@@ -16,9 +16,23 @@ namespace canvas_app_v1
 {
     public partial class main_form : Form
     {
+        private const string APP_NAME = "Canvas Page Manager"; // Name of the app which will not change
+        private bool page_edited = false; // True if the page the user is editing has been edited and not saved
+
         public main_form()
         {
             InitializeComponent();
+        }
+
+        private void RemoveLabels()
+        {
+            // Remove labels if they exist:
+            if ((tut_label_top != null) && (tut_label_bottom_1 != null) && (tut_label_bottom_2 != null))
+            {
+                tut_label_top.Dispose();
+                tut_label_bottom_1.Dispose();
+                tut_label_bottom_2.Dispose();
+            }
         }
 
         private void AddHtmlEditor()
@@ -28,6 +42,8 @@ namespace canvas_app_v1
             hec.Parent = right_panel;
             hec.Dock = DockStyle.Fill;
             hec.Name = "main_editor";
+
+            RemoveLabels();
         }
 
         private void main_form_Load(object sender, EventArgs e)
@@ -64,6 +80,9 @@ namespace canvas_app_v1
                 HTMLEditControl new_hec = right_panel.Controls.Find("main_editor", false).First() as HTMLEditControl;
                 // TODO ------ MAKE THIS BE THE ACTUAL CANVAS CLASS PAGE TEXT WHEN STUFF IS READY ------------------------------------
                 new_hec.DocumentHTML = main_tree.SelectedNode.Text;
+                
+                // Setup top text
+                this.Text = APP_NAME + " - " + main_tree.SelectedNode.Parent.Text + " - " + main_tree.SelectedNode.Text;
             }  else
             {
                 // Close all nodes except for the selected one, which is expanded:

@@ -29,20 +29,20 @@ namespace canvas_app_v1
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Syllabus");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Page1");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Page2");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Class1", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Syllabus");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Page1");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Page2");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Class2", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6,
-            treeNode7});
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Syllabus");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Page1");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Page2");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Class1", new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode18,
+            treeNode19});
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Syllabus");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Page1");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Page2");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Class2", new System.Windows.Forms.TreeNode[] {
+            treeNode21,
+            treeNode22,
+            treeNode23});
             this.main_menu = new System.Windows.Forms.MenuStrip();
             this.outer_panel = new System.Windows.Forms.Panel();
             this.new_page_button = new System.Windows.Forms.Button();
@@ -50,8 +50,12 @@ namespace canvas_app_v1
             this.inner_panel = new System.Windows.Forms.Panel();
             this.classes_label = new System.Windows.Forms.Label();
             this.right_panel = new System.Windows.Forms.Panel();
+            this.tut_label_bottom_2 = new System.Windows.Forms.Label();
+            this.tut_label_bottom_1 = new System.Windows.Forms.Label();
+            this.tut_label_top = new System.Windows.Forms.Label();
             this.outer_panel.SuspendLayout();
             this.inner_panel.SuspendLayout();
+            this.right_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // main_menu
@@ -92,25 +96,25 @@ namespace canvas_app_v1
             | System.Windows.Forms.AnchorStyles.Left)));
             this.main_tree.Location = new System.Drawing.Point(-1, 34);
             this.main_tree.Name = "main_tree";
-            treeNode1.Name = "Node1";
-            treeNode1.Text = "Syllabus";
-            treeNode2.Name = "Node2";
-            treeNode2.Text = "Page1";
-            treeNode3.Name = "Node3";
-            treeNode3.Text = "Page2";
-            treeNode4.Name = "Node0";
-            treeNode4.Text = "Class1";
-            treeNode5.Name = "Node5";
-            treeNode5.Text = "Syllabus";
-            treeNode6.Name = "Node6";
-            treeNode6.Text = "Page1";
-            treeNode7.Name = "Node7";
-            treeNode7.Text = "Page2";
-            treeNode8.Name = "Node4";
-            treeNode8.Text = "Class2";
+            treeNode17.Name = "Node1";
+            treeNode17.Text = "Syllabus";
+            treeNode18.Name = "Node2";
+            treeNode18.Text = "Page1";
+            treeNode19.Name = "Node3";
+            treeNode19.Text = "Page2";
+            treeNode20.Name = "Node0";
+            treeNode20.Text = "Class1";
+            treeNode21.Name = "Node5";
+            treeNode21.Text = "Syllabus";
+            treeNode22.Name = "Node6";
+            treeNode22.Text = "Page1";
+            treeNode23.Name = "Node7";
+            treeNode23.Text = "Page2";
+            treeNode24.Name = "Node4";
+            treeNode24.Text = "Class2";
             this.main_tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode8});
+            treeNode20,
+            treeNode24});
             this.main_tree.Size = new System.Drawing.Size(200, 388);
             this.main_tree.TabIndex = 2;
             this.main_tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.main_tree_AfterSelect);
@@ -140,10 +144,43 @@ namespace canvas_app_v1
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.right_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.right_panel.Controls.Add(this.tut_label_bottom_2);
+            this.right_panel.Controls.Add(this.tut_label_bottom_1);
+            this.right_panel.Controls.Add(this.tut_label_top);
             this.right_panel.Location = new System.Drawing.Point(206, 27);
             this.right_panel.Name = "right_panel";
             this.right_panel.Size = new System.Drawing.Size(594, 423);
             this.right_panel.TabIndex = 2;
+            // 
+            // tut_label_bottom_2
+            // 
+            this.tut_label_bottom_2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tut_label_bottom_2.AutoSize = true;
+            this.tut_label_bottom_2.Location = new System.Drawing.Point(171, 146);
+            this.tut_label_bottom_2.Name = "tut_label_bottom_2";
+            this.tut_label_bottom_2.Size = new System.Drawing.Size(252, 15);
+            this.tut_label_bottom_2.TabIndex = 3;
+            this.tut_label_bottom_2.Text = "click the \"New Page\" button in the bottom left";
+            // 
+            // tut_label_bottom_1
+            // 
+            this.tut_label_bottom_1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tut_label_bottom_1.AutoSize = true;
+            this.tut_label_bottom_1.Location = new System.Drawing.Point(142, 131);
+            this.tut_label_bottom_1.Name = "tut_label_bottom_1";
+            this.tut_label_bottom_1.Size = new System.Drawing.Size(310, 15);
+            this.tut_label_bottom_1.TabIndex = 2;
+            this.tut_label_bottom_1.Text = "To create a new page for a class, select the class, and then";
+            // 
+            // tut_label_top
+            // 
+            this.tut_label_top.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tut_label_top.AutoSize = true;
+            this.tut_label_top.Location = new System.Drawing.Point(205, 13);
+            this.tut_label_top.Name = "tut_label_top";
+            this.tut_label_top.Size = new System.Drawing.Size(184, 15);
+            this.tut_label_top.TabIndex = 0;
+            this.tut_label_top.Text = "Select a class page to start editing";
             // 
             // main_form
             // 
@@ -159,6 +196,8 @@ namespace canvas_app_v1
             this.outer_panel.ResumeLayout(false);
             this.inner_panel.ResumeLayout(false);
             this.inner_panel.PerformLayout();
+            this.right_panel.ResumeLayout(false);
+            this.right_panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,6 +212,9 @@ namespace canvas_app_v1
         private System.Windows.Forms.Panel right_panel;
         private NativeTreeView main_tree;
         private System.Windows.Forms.Button new_page_button;
+        private System.Windows.Forms.Label tut_label_top;
+        private System.Windows.Forms.Label tut_label_bottom_1;
+        private System.Windows.Forms.Label tut_label_bottom_2;
     }
 }
 
