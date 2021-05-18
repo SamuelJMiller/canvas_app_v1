@@ -54,8 +54,8 @@ namespace canvas_app_v1
             if (main_tree.SelectedNode.Parent != null)
             {
                 // Remove the old editor:
-                HTMLEditControl hec = this.Controls.Find("main_editor", false).First() as HTMLEditControl;
-                this.Controls.Remove(hec);
+                HTMLEditControl hec = right_panel.Controls.Find("main_editor", false).First() as HTMLEditControl;
+                hec.Dispose();
 
                 // Add new editor:
                 /*AddHtmlEditor();
