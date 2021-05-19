@@ -44,6 +44,12 @@ namespace canvas_app_v1
             hec.Dock = DockStyle.Fill;
             hec.Name = "main_editor";
 
+            // Set to edited if user edits anything on the page:
+            hec.HTMLChanged += new HTMLEditControl.HTMLChangedEventHandler(on_html_edit);
+
+            // Enable "save" button:
+            (main_menu.Items[0] as ToolStripMenuItem).DropDownItems[0].Enabled = true;
+
             RemoveLabels(); // No more need for labels
         }
 
@@ -53,6 +59,8 @@ namespace canvas_app_v1
             main_menu.Items.Add("File");
 
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Save and Upload");
+            (main_menu.Items[0] as ToolStripMenuItem).DropDownItems[0].Click += new EventHandler(file_saveandupload_click);
+            (main_menu.Items[0] as ToolStripMenuItem).DropDownItems[0].Enabled = false;
 
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Close App");
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems[1].Click += new EventHandler(file_closeapp_click);
@@ -105,6 +113,28 @@ namespace canvas_app_v1
         private void file_closeapp_click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        // Save and upload pages:
+        private void file_saveandupload_click(object sender, EventArgs e)
+        {
+            if (page_edited)
+            {
+                page_edited = false;
+                this.Text = this.Text.Remove(this.Text.Length - 1); // Take the star off if saved
+            }
+
+            // IMPLEMENT SAVE-TO-CANVAS PROTOCOL
+        }
+
+        // What to do when user edits:
+        private void on_html_edit(object sender, EventArgs e)
+        {
+            if (page_edited == false)
+            {
+                page_edited = true;
+                this.Text += '*'; // Add a star if editing
+            }
         }
 
         // Toggle tutorial on/off:
