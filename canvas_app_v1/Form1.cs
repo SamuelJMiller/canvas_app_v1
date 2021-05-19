@@ -76,6 +76,13 @@ namespace canvas_app_v1
 
         private void main_tree_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            // Show a message if the user tries to switch pages without saving:
+            if (page_edited)
+            {
+                MessageBox.Show("Please save your changes!");
+                return;
+            }
+
             // If node selected is a child node:
             if (main_tree.SelectedNode.Parent != null)
             {
