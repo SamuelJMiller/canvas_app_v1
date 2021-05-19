@@ -45,41 +45,24 @@ namespace canvas_app_v1
             hec.Name = "main_editor";
 
             RemoveLabels(); // No more need for labels
-
-            (main_menu.Items[1] as ToolStripMenuItem).DropDownItems[0].Enabled = false; // Disable if no more labels
         }
 
         private void main_form_Load(object sender, EventArgs e)
         {
             // Add menu items:
             main_menu.Items.Add("File");
-            main_menu.Items.Add("Options");
 
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Save and Upload");
 
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Close App");
+            (main_menu.Items[0] as ToolStripMenuItem).DropDownItems[1].Click += new EventHandler(file_closeapp_click);
 
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Log Out");
-
-            (main_menu.Items[1] as ToolStripMenuItem).DropDownItems.Add("Toggle Tutorial");
-            (main_menu.Items[1] as ToolStripMenuItem).DropDownItems[0].Click += new EventHandler(tutorial_toggle_click);
 
             // Expand first class node in TreeView, if exists:
             if (main_tree.Nodes[0].Nodes.Count > 0) // If node is an actuall class, not just the message
             {
                 main_tree.Nodes[0].Expand();
-            }
-
-            // Show tutorial depending on user setting:
-            string saved_tutorialSetting = ConfigurationManager.AppSettings["tutorialEnabled"];
-
-            if (saved_tutorialSetting == "false")
-            {
-                Label[] tut_labels = { tut_label_top, tut_label_bottom_1, tut_label_bottom_2 };
-                foreach ( Label l in tut_labels )
-                {
-                    l.Visible = false;
-                }
             }
         }
 
@@ -118,8 +101,14 @@ namespace canvas_app_v1
             }
         }
 
+        // Close the app if the user opts to:
+        private void file_closeapp_click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
         // Toggle tutorial on/off:
-        private void tutorial_toggle_click(object sender, EventArgs e)
+        /*private void tutorial_toggle_click(object sender, EventArgs e)
         {
             Label[] tut_labels = { tut_label_top, tut_label_bottom_1, tut_label_bottom_2 };
             ConfigurationUserLevel security = ConfigurationUserLevel.None;
@@ -144,6 +133,6 @@ namespace canvas_app_v1
                     l.Visible = true;
                 }
             }
-        }
+        }*/
     }
 }
