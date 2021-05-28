@@ -1,0 +1,96 @@
+﻿
+namespace canvas_app_v1
+{
+    partial class login_form
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.password_box = new System.Windows.Forms.TextBox();
+            this.username_box = new System.Windows.Forms.TextBox();
+            this.username_label = new System.Windows.Forms.Label();
+            this.password_label = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // password_box
+            // 
+            this.password_box.Location = new System.Drawing.Point(308, 248);
+            this.password_box.Name = "password_box";
+            this.password_box.Size = new System.Drawing.Size(200, 23);
+            this.password_box.TabIndex = 0;
+            // 
+            // username_box
+            // 
+            this.username_box.Location = new System.Drawing.Point(308, 166);
+            this.username_box.Name = "username_box";
+            this.username_box.Size = new System.Drawing.Size(200, 23);
+            this.username_box.TabIndex = 1;
+            // 
+            // username_label
+            // 
+            this.username_label.AutoSize = true;
+            this.username_label.ForeColor = System.Drawing.Color.White;
+            this.username_label.Location = new System.Drawing.Point(377, 133);
+            this.username_label.Name = "username_label";
+            this.username_label.Size = new System.Drawing.Size(63, 15);
+            this.username_label.TabIndex = 2;
+            this.username_label.Text = "Username:";
+            // 
+            // password_label
+            // 
+            this.password_label.AutoSize = true;
+            this.password_label.ForeColor = System.Drawing.Color.White;
+            this.password_label.Location = new System.Drawing.Point(378, 219);
+            this.password_label.Name = "password_label";
+            this.password_label.Size = new System.Drawing.Size(60, 15);
+            this.password_label.TabIndex = 3;
+            this.password_label.Text = "Password:";
+            // 
+            // login_form
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Navy;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.password_label);
+            this.Controls.Add(this.username_label);
+            this.Controls.Add(this.username_box);
+            this.Controls.Add(this.password_box);
+            this.Name = "login_form";
+            this.Text = "Canvas Desktop Login";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TextBox password_box;
+        private System.Windows.Forms.TextBox username_box;
+        private System.Windows.Forms.Label username_label;
+        private System.Windows.Forms.Label password_label;
+    }
+}
