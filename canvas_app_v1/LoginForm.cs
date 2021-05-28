@@ -12,9 +12,12 @@ namespace canvas_app_v1
 {
     public partial class login_form : Form
     {
-        public login_form()
+        main_form mainform;
+
+        public login_form(main_form mf)
         {
             InitializeComponent();
+            mainform = mf;
         }
     }
 }
