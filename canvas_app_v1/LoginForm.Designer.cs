@@ -75,12 +75,14 @@ namespace canvas_app_v1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ControlBox = false;
             this.Controls.Add(this.password_label);
             this.Controls.Add(this.username_label);
             this.Controls.Add(this.username_box);
             this.Controls.Add(this.password_box);
             this.Name = "login_form";
             this.Text = "Canvas Desktop Login";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.login_form_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

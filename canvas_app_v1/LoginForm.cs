@@ -19,5 +19,11 @@ namespace canvas_app_v1
             InitializeComponent();
             mainform = mf;
         }
+
+        // So the user can't bypass login:
+        private void login_form_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
