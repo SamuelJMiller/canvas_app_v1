@@ -33,6 +33,7 @@ namespace canvas_app_v1
             this.username_box = new System.Windows.Forms.TextBox();
             this.username_label = new System.Windows.Forms.Label();
             this.password_label = new System.Windows.Forms.Label();
+            this.login_prompt_label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // password_box
@@ -69,17 +70,29 @@ namespace canvas_app_v1
             this.password_label.TabIndex = 3;
             this.password_label.Text = "Password:";
             // 
+            // login_prompt_label
+            // 
+            this.login_prompt_label.AutoSize = true;
+            this.login_prompt_label.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.login_prompt_label.ForeColor = System.Drawing.Color.White;
+            this.login_prompt_label.Location = new System.Drawing.Point(293, 29);
+            this.login_prompt_label.Name = "login_prompt_label";
+            this.login_prompt_label.Size = new System.Drawing.Size(230, 15);
+            this.login_prompt_label.TabIndex = 4;
+            this.login_prompt_label.Text = "Please log in with your Canvas credentials:";
+            // 
             // login_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.ControlBox = false;
+            this.Controls.Add(this.login_prompt_label);
             this.Controls.Add(this.password_label);
             this.Controls.Add(this.username_label);
             this.Controls.Add(this.username_box);
             this.Controls.Add(this.password_box);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "login_form";
             this.Text = "Canvas Desktop Login";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.login_form_FormClosed);
@@ -94,5 +107,6 @@ namespace canvas_app_v1
         private System.Windows.Forms.TextBox username_box;
         private System.Windows.Forms.Label username_label;
         private System.Windows.Forms.Label password_label;
+        private System.Windows.Forms.Label login_prompt_label;
     }
 }

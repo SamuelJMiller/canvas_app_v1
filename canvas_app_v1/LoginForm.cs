@@ -23,7 +23,13 @@ namespace canvas_app_v1
         // So the user can't bypass login:
         private void login_form_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Application.Exit();
+            } else
+            {
+                this.Close();
+            }
         }
     }
 }
