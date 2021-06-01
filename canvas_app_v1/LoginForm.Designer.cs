@@ -42,6 +42,7 @@ namespace canvas_app_v1
             this.password_box.Name = "password_box";
             this.password_box.Size = new System.Drawing.Size(200, 23);
             this.password_box.TabIndex = 0;
+            this.password_box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.password_box_KeyPress);
             // 
             // username_box
             // 
@@ -49,6 +50,7 @@ namespace canvas_app_v1
             this.username_box.Name = "username_box";
             this.username_box.Size = new System.Drawing.Size(200, 23);
             this.username_box.TabIndex = 1;
+            this.username_box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.username_box_KeyPress);
             // 
             // username_label
             // 

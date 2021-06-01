@@ -12,7 +12,8 @@ namespace canvas_app_v1
 {
     public partial class login_form : Form
     {
-        main_form mainform;
+        private main_form mainform;
+        private bool user_authenticated = false;
 
         public login_form(main_form mf)
         {
@@ -23,12 +24,40 @@ namespace canvas_app_v1
         // So the user can't bypass login:
         private void login_form_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
+            if (user_authenticated == false)
             {
                 Application.Exit();
-            } else
+            }
+        }
+
+        private void username_box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // If presses enter:
+            if (e.KeyChar == 13)
             {
-                this.Close();
+                if (username_box.Text == string.Empty || password_box.Text == string.Empty)
+                {
+                    MessageBox.Show("You must supply information to both fields!");
+                } else
+                {
+                    user_authenticated = true;
+                    this.Close();
+                }
+            }
+        }
+
+        private void password_box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                if (username_box.Text == string.Empty || password_box.Text == string.Empty)
+                {
+                    MessageBox.Show("You must supply information to both fields!");
+                } else
+                {
+                    user_authenticated = true;
+                    this.Close();
+                }
             }
         }
     }
