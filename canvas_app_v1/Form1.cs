@@ -56,8 +56,8 @@ namespace canvas_app_v1
         private void main_form_Load(object sender, EventArgs e)
         {
             //  Initialize login:
-            login_form lf = new login_form(this);
-            lf.ShowDialog();
+            //login_form lf = new login_form(this);
+            //lf.ShowDialog();
 
             // Add menu items:
             main_menu.Items.Add("File");
