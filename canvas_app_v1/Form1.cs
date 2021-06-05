@@ -18,6 +18,7 @@ namespace canvas_app_v1
     public partial class main_form : Form
     {
         private const string APP_NAME = "Canvas Page Manager"; // Name of the app which will not change
+        private const string BASE_URL = "https://centralia.instructure.com/api/v1/"; // All API access starts here
         private bool page_edited = false; // True if the page the user is editing has been edited and not saved
 
         public main_form()
