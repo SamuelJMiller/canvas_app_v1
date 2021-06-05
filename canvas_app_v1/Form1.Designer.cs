@@ -50,10 +50,10 @@ namespace canvas_app_v1
             this.inner_panel = new System.Windows.Forms.Panel();
             this.classes_label = new System.Windows.Forms.Label();
             this.right_panel = new System.Windows.Forms.Panel();
+            this.file_in = new System.Windows.Forms.Button();
             this.tut_label_bottom_2 = new System.Windows.Forms.Label();
             this.tut_label_bottom_1 = new System.Windows.Forms.Label();
             this.tut_label_top = new System.Windows.Forms.Label();
-            this.file_in = new System.Windows.Forms.Button();
             this.outer_panel.SuspendLayout();
             this.inner_panel.SuspendLayout();
             this.right_panel.SuspendLayout();
@@ -154,6 +154,16 @@ namespace canvas_app_v1
             this.right_panel.Size = new System.Drawing.Size(594, 423);
             this.right_panel.TabIndex = 2;
             // 
+            // file_in
+            // 
+            this.file_in.Location = new System.Drawing.Point(105, 265);
+            this.file_in.Name = "file_in";
+            this.file_in.Size = new System.Drawing.Size(200, 23);
+            this.file_in.TabIndex = 4;
+            this.file_in.Text = "upload file test";
+            this.file_in.UseVisualStyleBackColor = true;
+            this.file_in.Click += new System.EventHandler(this.file_in_Click);
+            // 
             // tut_label_bottom_2
             // 
             this.tut_label_bottom_2.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -183,15 +193,6 @@ namespace canvas_app_v1
             this.tut_label_top.Size = new System.Drawing.Size(184, 15);
             this.tut_label_top.TabIndex = 0;
             this.tut_label_top.Text = "Select a class page to start editing";
-            // 
-            // file_in
-            // 
-            this.file_in.Location = new System.Drawing.Point(105, 265);
-            this.file_in.Name = "file_in";
-            this.file_in.Size = new System.Drawing.Size(200, 23);
-            this.file_in.TabIndex = 4;
-            this.file_in.Text = "upload file test";
-            this.file_in.UseVisualStyleBackColor = true;
             // 
             // main_form
             // 

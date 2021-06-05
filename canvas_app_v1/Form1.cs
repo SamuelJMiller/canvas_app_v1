@@ -20,6 +20,7 @@ namespace canvas_app_v1
         private const string APP_NAME = "Canvas Page Manager"; // Name of the app which will not change
         private const string BASE_URL = "https://centralia.instructure.com/api/v1/"; // All API access starts here
         private bool page_edited = false; // True if the page the user is editing has been edited and not saved
+        private FileUpload fu = new FileUpload();
 
         public main_form()
         {
@@ -149,32 +150,19 @@ namespace canvas_app_v1
             }
         }
 
-        // Toggle tutorial on/off:
-        /*private void tutorial_toggle_click(object sender, EventArgs e)
+        private async void file_in_Click(object sender, EventArgs e)
         {
-            Label[] tut_labels = { tut_label_top, tut_label_bottom_1, tut_label_bottom_2 };
-            ConfigurationUserLevel security = ConfigurationUserLevel.None;
-            Configuration config = ConfigurationManager.OpenExeConfiguration(security);
-            AppSettingsSection app = config.AppSettings;
+            dynamic json = await fu.init_file_upload("testfile.txt");
+            HTMLEditControl hec;
 
-            // If visible, make invisible:
-            if (tut_label_top.Visible && tut_label_bottom_1.Visible && tut_label_bottom_2.Visible)
-            {
-                foreach ( Label l in tut_labels )
-                {
-                    app.Settings.Remove("tutorialEnabled");
-                    app.Settings.Add("tutorialEnabled", "false");
-                    l.Visible = false;
-                }
-            } else // Otherwise do the opposite:
-            {
-                foreach (Label l in tut_labels)
-                {
-                    app.Settings.Remove("tutorialEnabled");
-                    app.Settings.Add("tutorialEnabled", "true");
-                    l.Visible = true;
-                }
-            }
-        }*/
+            AddHtmlEditor();
+
+            hec = right_panel.Controls.Find("main_editor", false).First() as HTMLEditControl;
+
+            string trimmed_url = JsonConvert.SerializeObject(json["upload_url"]).Trim('"');
+
+            dynamic json2 = await fu.send_file(trimmed_url);
+            hec.DocumentHTML = JsonConvert.SerializeObject(json2);
+        }
     }
 }
