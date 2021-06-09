@@ -161,7 +161,9 @@ namespace canvas_app_v1
 
             string trimmed_url = JsonConvert.SerializeObject(json["upload_url"]).Trim('"');
 
-            dynamic json2 = await fu.send_file(trimmed_url);
+            dynamic json2 = await fu.send_file(trimmed_url,
+                JsonConvert.SerializeObject(json["filename"]).Trim('"'), JsonConvert.SerializeObject(json["content_type"]).Trim('"'),
+                @"D:\Users\sam\Documents\heyhey.txt");
             hec.DocumentHTML = JsonConvert.SerializeObject(json2);
         }
     }

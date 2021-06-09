@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -31,16 +32,20 @@ namespace canvas_app_v1
         }
 
         // Step two of the file upload process: send the data to the specific upload_url
-        public async Task<dynamic> send_file(string upload_url)
+        public async Task<dynamic> send_file(string upload_url, string filename, string content_type, string file_to_upload)
         {
-            using (HttpClient client = new HttpClient())
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.AllowAutoRedirect = false;
+            using (HttpClient client = new HttpClient(handler))
             {
-                string final_url = upload_url + "?filename=testfile.txt&content_type=text/plain&file=@heyhey";
+                MultipartFormDataContent step2content = new MultipartFormDataContent();
 
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TEST_TOKEN);
-                HttpResponseMessage step2response = await client.PostAsync(final_url, null);
+                // Add upload_params to HttpContent:
+                step2content.Add(new StringContent(filename), "filename");
+                step2content.Add(new StringContent(content_type), "content_type");
+                step2content.Add(new StringContent("@" + file_to_upload), "file");
 
+                HttpResponseMessage step2response = await client.PostAsync(upload_url, step2content);
                 string result_string = await step2response.Content.ReadAsStringAsync();
 
                 return JsonConvert.DeserializeObject(result_string);
