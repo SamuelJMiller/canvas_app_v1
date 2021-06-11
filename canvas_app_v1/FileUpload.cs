@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
@@ -39,11 +40,19 @@ namespace canvas_app_v1
             using (HttpClient client = new HttpClient(handler))
             {
                 MultipartFormDataContent step2content = new MultipartFormDataContent();
+                FileInfo fi = new FileInfo(file_to_upload);
 
                 // Add upload_params to HttpContent:
                 step2content.Add(new StringContent(filename), "filename");
                 step2content.Add(new StringContent(content_type), "content_type");
-                step2content.Add(new StringContent("@" + file_to_upload), "file");
+
+                // Add file content to HttpContent:
+                FileStream fs = fi.OpenRead();
+                byte[] file_bytes = new byte[fi.Length];
+                int num_bytes = fs.Read(file_bytes, 0, file_bytes.Length);
+                fs.Close();
+
+                step2content.Add(new ByteArrayContent(file_bytes), "file");
 
                 HttpResponseMessage step2response = await client.PostAsync(upload_url, step2content);
                 string result_string = await step2response.Content.ReadAsStringAsync();

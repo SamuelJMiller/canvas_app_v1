@@ -152,6 +152,13 @@ namespace canvas_app_v1
 
         private async void file_in_Click(object sender, EventArgs e)
         {
+            string path = string.Empty;
+            OpenFileDialog dialog = new();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                path = dialog.FileName;
+            }
+
             dynamic json = await fu.init_file_upload("testfile.txt");
             HTMLEditControl hec;
 
@@ -160,10 +167,10 @@ namespace canvas_app_v1
             hec = right_panel.Controls.Find("main_editor", false).First() as HTMLEditControl;
 
             string trimmed_url = JsonConvert.SerializeObject(json["upload_url"]).Trim('"');
+            string received_filename = JsonConvert.SerializeObject(json["upload_params"]["filename"]).Trim('"');
+            string received_content_type = JsonConvert.SerializeObject(json["upload_params"]["content_type"]).Trim('"');
 
-            dynamic json2 = await fu.send_file(trimmed_url,
-                JsonConvert.SerializeObject(json["filename"]).Trim('"'), JsonConvert.SerializeObject(json["content_type"]).Trim('"'),
-                @"D:\Users\sam\Documents\heyhey.txt");
+            dynamic json2 = await fu.send_file(trimmed_url, received_filename, received_content_type, path);
             hec.DocumentHTML = JsonConvert.SerializeObject(json2);
         }
     }
