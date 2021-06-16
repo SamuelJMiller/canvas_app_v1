@@ -210,19 +210,27 @@ namespace canvas_app_v1
             {
                 if (JsonConvert.SerializeObject(my_courses[i]["name"]).Trim('"') == current_page.Parent.Text)
                 {
-                    // Kind of inefficient, can we fix the repeated requesting?
-                    dynamic pages = await HttpUtilities.get_course_pages(BASE_URL, TEST_TOKEN,
-                        JsonConvert.SerializeObject(my_courses[i]["id"]));
-
-                    for ( int j = 0; j < pages.Count; ++j )
+                    if (current_page.Text == "Syllabus") // Update syllabus
                     {
-                        if (JsonConvert.SerializeObject(pages[j]["title"]).Trim('"') == current_page.Text)
+                        dynamic update_syl = await HttpUtilities.update_syllabus(BASE_URL, TEST_TOKEN,
+                            JsonConvert.SerializeObject(my_courses[i]["id"]).Trim('"'),
+                            hec.DocumentHTML);
+                    } else // Update other page
+                    {
+                        // Kind of inefficient, can we fix the repeated requesting?
+                        dynamic pages = await HttpUtilities.get_course_pages(BASE_URL, TEST_TOKEN,
+                            JsonConvert.SerializeObject(my_courses[i]["id"]));
+
+                        for (int j = 0; j < pages.Count; ++j)
                         {
-                            // Update page:
-                            dynamic update = HttpUtilities.update_page(BASE_URL, TEST_TOKEN,
-                                JsonConvert.SerializeObject(my_courses[i]["id"]).Trim('"'),
-                                JsonConvert.SerializeObject(pages[j]["url"]).Trim('"'),
-                                hec.DocumentHTML);
+                            if (JsonConvert.SerializeObject(pages[j]["title"]).Trim('"') == current_page.Text)
+                            {
+                                // Update page:
+                                dynamic update = HttpUtilities.update_page(BASE_URL, TEST_TOKEN,
+                                    JsonConvert.SerializeObject(my_courses[i]["id"]).Trim('"'),
+                                    JsonConvert.SerializeObject(pages[j]["url"]).Trim('"'),
+                                    hec.DocumentHTML);
+                            }
                         }
                     }
                 }
