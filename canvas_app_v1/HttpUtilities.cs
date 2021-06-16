@@ -20,5 +20,11 @@ namespace canvas_app_v1
         {
             return await HttpRequest.get_get_response(base_url, token, "courses/" + course_id + "/pages");
         }
+
+        // Get single page:
+        public static async Task<dynamic> get_single_page(string base_url, string token, string course_id, string page_url)
+        {
+            return await HttpRequest.get_get_response(base_url, token, "courses/" + course_id + "/pages/" + page_url);
+        }
     }
 }

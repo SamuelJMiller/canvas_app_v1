@@ -17,11 +17,15 @@ namespace canvas_app_v1
 {
     public partial class main_form : Form
     {
-        private const string APP_NAME = "Canvas Page Manager"; // Name of the app which will not change
+        private const string APP_NAME = "Canvas Desktop"; // Name of the app which will not change
         private const string BASE_URL = "https://centralia.instructure.com/api/v1/"; // All API access starts here
         private const string TEST_TOKEN = "9~Uo3aHRPFGxOZ3XJJXh97uYceOhwk8z4XQKkSCZylTCsJOqHHHIp8aA8BBUbDVRm9";
         private bool page_edited = false; // True if the page the user is editing has been edited and not saved
         private FileUpload fu = new FileUpload();
+
+        private dynamic my_courses;
+        private List<dynamic> page_groups = new List<dynamic>(); // Holds the pages for each course (not currently in use)
+        private TreeNode current_page;
 
         public main_form()
         {
@@ -75,7 +79,7 @@ namespace canvas_app_v1
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Log Out");
 
             // Get courses and put them in the tree:
-            dynamic my_courses = await HttpUtilities.get_teacher_courses(BASE_URL, TEST_TOKEN);
+            my_courses = await HttpUtilities.get_teacher_courses(BASE_URL, TEST_TOKEN);
             
             if (my_courses.Count > 0) // If there are courses
             {
@@ -105,7 +109,7 @@ namespace canvas_app_v1
             }
         }
 
-        private void main_tree_AfterSelect(object sender, TreeViewEventArgs e)
+        private async void main_tree_AfterSelect(object sender, TreeViewEventArgs e)
         {
             // Show a message if the user tries to switch pages without saving:
             if (page_edited)
@@ -117,6 +121,9 @@ namespace canvas_app_v1
             // If node selected is a child node:
             if (main_tree.SelectedNode.Parent != null)
             {
+                // Set current_page to selected node:
+                current_page = main_tree.SelectedNode;
+
                 // Remove the old editor:
                 if (right_panel.Controls.Find("main_editor", false).Count() > 0) {
                     HTMLEditControl hec = right_panel.Controls.Find("main_editor", false).First() as HTMLEditControl;
@@ -128,8 +135,28 @@ namespace canvas_app_v1
 
                 // Add page text to new editor:
                 HTMLEditControl new_hec = right_panel.Controls.Find("main_editor", false).First() as HTMLEditControl;
-                // TODO ------ MAKE THIS BE THE ACTUAL CANVAS CLASS PAGE TEXT WHEN STUFF IS READY ------------------------------------
-                new_hec.DocumentHTML = main_tree.SelectedNode.Text;
+                
+                for ( int i = 0; i < my_courses.Count; ++i )
+                {
+                    if (JsonConvert.SerializeObject(my_courses[i]["name"]).Trim('"') == main_tree.SelectedNode.Parent.Text)
+                    {
+                        // Kind of inefficient, can we fix the repeated requesting?
+                        dynamic pages = await HttpUtilities.get_course_pages(BASE_URL, TEST_TOKEN,
+                            JsonConvert.SerializeObject(my_courses[i]["id"]));
+
+                        for ( int j = 0; j < pages.Count; ++j )
+                        {
+                            if (JsonConvert.SerializeObject(pages[j]["title"]).Trim('"') == main_tree.SelectedNode.Text)
+                            {
+                                dynamic page = await HttpUtilities.get_single_page(BASE_URL, TEST_TOKEN,
+                                    JsonConvert.SerializeObject(my_courses[i]["id"]).Trim('"'),
+                                    JsonConvert.SerializeObject(pages[j]["url"]).Trim('"'));
+                                
+                                new_hec.DocumentHTML = JsonConvert.SerializeObject(page["body"]).Trim('"');
+                            }
+                        }
+                    }
+                }
                 
                 // Setup top text
                 this.Text = APP_NAME + " - " + main_tree.SelectedNode.Parent.Text + " - " + main_tree.SelectedNode.Text;

@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 
 namespace canvas_app_v1
 {
+    // An unfinished class to upload files to Canvas using the API endpoints
     class FileUpload
     {
         private const string BASE_URL = "https://centralia.instructure.com/api/v1/"; // All API access starts here
