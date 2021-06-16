@@ -76,6 +76,7 @@ namespace canvas_app_v1
             this.new_page_button.TabIndex = 3;
             this.new_page_button.Text = "New Page";
             this.new_page_button.UseVisualStyleBackColor = true;
+            this.new_page_button.Click += new System.EventHandler(this.new_page_button_Click);
             // 
             // main_tree
             // 

@@ -34,6 +34,12 @@ namespace canvas_app_v1
                 "?wiki_page[body]=" + page_body);
         }
 
+        // Create new page:
+        public static async Task<dynamic> create_page(string base_url, string token, string course_id, string page_name)
+        {
+            return await HttpRequest.get_post_response(base_url, token, "courses/" + course_id + "/pages");
+        }
+
         // Get syllabus for a specific course:
         public static async Task<dynamic> get_course_syllabus(string base_url, string token, string course_id)
         {

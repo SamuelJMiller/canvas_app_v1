@@ -26,6 +26,7 @@ namespace canvas_app_v1
         private dynamic my_courses;
         private List<dynamic> page_groups = new List<dynamic>(); // Holds the pages for each course (not currently in use)
         private TreeNode current_page; // Will be set to the current child node, when it gets selected
+        private TreeNode current_class;
 
         public main_form()
         {
@@ -124,8 +125,9 @@ namespace canvas_app_v1
             // If node selected is a child node:
             if (main_tree.SelectedNode.Parent != null)
             {
-                // Set current_page to selected node:
+                // Set current_page and current_class to appropriate nodes:
                 current_page = main_tree.SelectedNode;
+                current_class = current_page.Parent;
 
                 // Disable new page button, if not already:
                 if (new_page_button.Enabled == true)
@@ -179,6 +181,9 @@ namespace canvas_app_v1
                 this.Text = APP_NAME + " - " + main_tree.SelectedNode.Parent.Text + " - " + main_tree.SelectedNode.Text;
             }  else
             {
+                // Set current_class appropriately:
+                current_class = main_tree.SelectedNode;
+
                 // Enable new page button, if not already:
                 if (new_page_button.Enabled == false)
                 {
@@ -260,6 +265,14 @@ namespace canvas_app_v1
                 page_edited = true;
                 this.Text += '*'; // Add a star if editing
             }
+        }
+
+        private void new_page_button_Click(object sender, EventArgs e)
+        {
+            PageNameForm pnf = new PageNameForm();
+            pnf.ShowDialog();
+
+            
         }
 
         // File upload testing: (Note: since this is now commented, the corresponding lines in the Designer.cs file
