@@ -145,7 +145,7 @@ namespace canvas_app_v1
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.right_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.right_panel.Controls.Add(this.file_in);
+            //this.right_panel.Controls.Add(this.file_in);
             this.right_panel.Controls.Add(this.tut_label_bottom_2);
             this.right_panel.Controls.Add(this.tut_label_bottom_1);
             this.right_panel.Controls.Add(this.tut_label_top);
@@ -156,13 +156,13 @@ namespace canvas_app_v1
             // 
             // file_in
             // 
-            this.file_in.Location = new System.Drawing.Point(105, 265);
-            this.file_in.Name = "file_in";
-            this.file_in.Size = new System.Drawing.Size(200, 23);
-            this.file_in.TabIndex = 4;
-            this.file_in.Text = "upload file test";
-            this.file_in.UseVisualStyleBackColor = true;
-            this.file_in.Click += new System.EventHandler(this.file_in_Click);
+            //this.file_in.Location = new System.Drawing.Point(105, 265);
+            //this.file_in.Name = "file_in";
+            //this.file_in.Size = new System.Drawing.Size(200, 23);
+            //this.file_in.TabIndex = 4;
+            //this.file_in.Text = "upload file test";
+            //this.file_in.UseVisualStyleBackColor = true;
+            //this.file_in.Click += new System.EventHandler(this.file_in_Click);
             // 
             // tut_label_bottom_2
             // 

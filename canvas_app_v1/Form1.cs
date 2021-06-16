@@ -57,7 +57,7 @@ namespace canvas_app_v1
 
         private void main_form_Load(object sender, EventArgs e)
         {
-            //  Initialize login:
+            //  Initialize login: (may be implemented when we can get a dev token for OAuth)
             //login_form lf = new login_form(this);
             //lf.ShowDialog();
 
@@ -150,28 +150,30 @@ namespace canvas_app_v1
             }
         }
 
-        private async void file_in_Click(object sender, EventArgs e)
-        {
-            string path = string.Empty;
-            OpenFileDialog dialog = new();
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                path = dialog.FileName;
-            }
+        // File upload testing: (Note: since this is now commented, the corresponding lines in the Designer.cs file
+        // representing the addition and construction of the button/event handler are commented as well)
+        //private async void file_in_Click(object sender, EventArgs e)
+        //{
+        //    string path = string.Empty;
+        //    OpenFileDialog dialog = new();
+        //    if (dialog.ShowDialog() == DialogResult.OK)
+        //    {
+        //        path = dialog.FileName;
+        //    }
 
-            dynamic json = await fu.init_file_upload("testfile.txt");
-            HTMLEditControl hec;
+        //    dynamic json = await fu.init_file_upload("testfile.txt");
+        //    HTMLEditControl hec;
 
-            AddHtmlEditor();
+        //    AddHtmlEditor();
 
-            hec = right_panel.Controls.Find("main_editor", false).First() as HTMLEditControl;
+        //    hec = right_panel.Controls.Find("main_editor", false).First() as HTMLEditControl;
 
-            string trimmed_url = JsonConvert.SerializeObject(json["upload_url"]).Trim('"');
-            string received_filename = JsonConvert.SerializeObject(json["upload_params"]["filename"]).Trim('"');
-            string received_content_type = JsonConvert.SerializeObject(json["upload_params"]["content_type"]).Trim('"');
+        //    string trimmed_url = JsonConvert.SerializeObject(json["upload_url"]).Trim('"');
+        //    string received_filename = JsonConvert.SerializeObject(json["upload_params"]["filename"]).Trim('"');
+        //    string received_content_type = JsonConvert.SerializeObject(json["upload_params"]["content_type"]).Trim('"');
 
-            dynamic json2 = await fu.send_file(trimmed_url, received_filename, received_content_type, path);
-            hec.DocumentHTML = JsonConvert.SerializeObject(json2);
-        }
+        //    dynamic json2 = await fu.send_file(trimmed_url, received_filename, received_content_type, path);
+        //    hec.DocumentHTML = JsonConvert.SerializeObject(json2);
+        //}
     }
 }
