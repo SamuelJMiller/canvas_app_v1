@@ -26,5 +26,11 @@ namespace canvas_app_v1
         {
             return await HttpRequest.get_get_response(base_url, token, "courses/" + course_id + "/pages/" + page_url);
         }
+
+        // Get syllabus for a specific course:
+        public static async Task<dynamic> get_course_syllabus(string base_url, string token, string course_id)
+        {
+            return await HttpRequest.get_get_response(base_url, token, "courses/" + course_id + "?include[]=syllabus_body");
+        }
     }
 }

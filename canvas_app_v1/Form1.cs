@@ -140,19 +140,27 @@ namespace canvas_app_v1
                 {
                     if (JsonConvert.SerializeObject(my_courses[i]["name"]).Trim('"') == main_tree.SelectedNode.Parent.Text)
                     {
-                        // Kind of inefficient, can we fix the repeated requesting?
-                        dynamic pages = await HttpUtilities.get_course_pages(BASE_URL, TEST_TOKEN,
-                            JsonConvert.SerializeObject(my_courses[i]["id"]));
+                        if (main_tree.SelectedNode.Text == "Syllabus") {
+                            dynamic syllabus = await HttpUtilities.get_course_syllabus(BASE_URL, TEST_TOKEN,
+                                JsonConvert.SerializeObject(my_courses[i]["id"]).Trim('"'));
 
-                        for ( int j = 0; j < pages.Count; ++j )
+                            new_hec.DocumentHTML = JsonConvert.SerializeObject(syllabus["syllabus_body"]).Trim('"');
+                        } else
                         {
-                            if (JsonConvert.SerializeObject(pages[j]["title"]).Trim('"') == main_tree.SelectedNode.Text)
+                            // Kind of inefficient, can we fix the repeated requesting?
+                            dynamic pages = await HttpUtilities.get_course_pages(BASE_URL, TEST_TOKEN,
+                                JsonConvert.SerializeObject(my_courses[i]["id"]));
+
+                            for (int j = 0; j < pages.Count; ++j)
                             {
-                                dynamic page = await HttpUtilities.get_single_page(BASE_URL, TEST_TOKEN,
-                                    JsonConvert.SerializeObject(my_courses[i]["id"]).Trim('"'),
-                                    JsonConvert.SerializeObject(pages[j]["url"]).Trim('"'));
-                                
-                                new_hec.DocumentHTML = JsonConvert.SerializeObject(page["body"]).Trim('"');
+                                if (JsonConvert.SerializeObject(pages[j]["title"]).Trim('"') == main_tree.SelectedNode.Text)
+                                {
+                                    dynamic page = await HttpUtilities.get_single_page(BASE_URL, TEST_TOKEN,
+                                        JsonConvert.SerializeObject(my_courses[i]["id"]).Trim('"'),
+                                        JsonConvert.SerializeObject(pages[j]["url"]).Trim('"'));
+
+                                    new_hec.DocumentHTML = JsonConvert.SerializeObject(page["body"]).Trim('"');
+                                }
                             }
                         }
                     }
