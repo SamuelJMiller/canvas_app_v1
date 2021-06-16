@@ -25,7 +25,7 @@ namespace canvas_app_v1
 
         private dynamic my_courses;
         private List<dynamic> page_groups = new List<dynamic>(); // Holds the pages for each course (not currently in use)
-        private TreeNode current_page;
+        private TreeNode current_page; // Will be set to the current child node, when it gets selected
 
         public main_form()
         {
@@ -189,7 +189,7 @@ namespace canvas_app_v1
         }
 
         // Save and upload pages:
-        private void file_saveandupload_click(object sender, EventArgs e)
+        private async void file_saveandupload_click(object sender, EventArgs e)
         {
             if (page_edited)
             {
@@ -197,7 +197,36 @@ namespace canvas_app_v1
                 this.Text = this.Text.Remove(this.Text.Length - 1); // Take the star off if saved
             }
 
-            // IMPLEMENT SAVE-TO-CANVAS PROTOCOL
+            HTMLEditControl hec = null;
+
+            // Find editor:
+            if (right_panel.Controls.Find("main_editor", false).Count() > 0)
+            {
+                hec = right_panel.Controls.Find("main_editor", false).First() as HTMLEditControl;
+            }
+
+            // Find correct page:
+            for ( int i = 0; i < my_courses.Count; ++i )
+            {
+                if (JsonConvert.SerializeObject(my_courses[i]["name"]).Trim('"') == current_page.Parent.Text)
+                {
+                    // Kind of inefficient, can we fix the repeated requesting?
+                    dynamic pages = await HttpUtilities.get_course_pages(BASE_URL, TEST_TOKEN,
+                        JsonConvert.SerializeObject(my_courses[i]["id"]));
+
+                    for ( int j = 0; j < pages.Count; ++j )
+                    {
+                        if (JsonConvert.SerializeObject(pages[j]["title"]).Trim('"') == current_page.Text)
+                        {
+                            // Update page:
+                            dynamic update = HttpUtilities.update_page(BASE_URL, TEST_TOKEN,
+                                JsonConvert.SerializeObject(my_courses[i]["id"]).Trim('"'),
+                                JsonConvert.SerializeObject(pages[j]["url"]).Trim('"'),
+                                hec.DocumentHTML);
+                        }
+                    }
+                }
+            }
         }
 
         // What to do when user edits:
