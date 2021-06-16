@@ -78,6 +78,9 @@ namespace canvas_app_v1
 
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Log Out");
 
+            // Disable new page button by default:
+            new_page_button.Enabled = false;
+
             // Get courses and put them in the tree:
             my_courses = await HttpUtilities.get_teacher_courses(BASE_URL, TEST_TOKEN);
             
@@ -123,6 +126,12 @@ namespace canvas_app_v1
             {
                 // Set current_page to selected node:
                 current_page = main_tree.SelectedNode;
+
+                // Disable new page button, if not already:
+                if (new_page_button.Enabled == true)
+                {
+                    new_page_button.Enabled = false;
+                }
 
                 // Remove the old editor:
                 if (right_panel.Controls.Find("main_editor", false).Count() > 0) {
@@ -170,6 +179,12 @@ namespace canvas_app_v1
                 this.Text = APP_NAME + " - " + main_tree.SelectedNode.Parent.Text + " - " + main_tree.SelectedNode.Text;
             }  else
             {
+                // Enable new page button, if not already:
+                if (new_page_button.Enabled == false)
+                {
+                    new_page_button.Enabled = true;
+                }
+
                 // Close all nodes except for the selected one, which is expanded:
                 main_tree.SelectedNode.Expand();
                 foreach ( TreeNode n in main_tree.Nodes )
