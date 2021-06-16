@@ -77,11 +77,24 @@ namespace canvas_app_v1
             // Get courses and put them in the tree:
             dynamic my_courses = await HttpUtilities.get_teacher_courses(BASE_URL, TEST_TOKEN);
             
-            if (my_courses.Count > 0)
+            if (my_courses.Count > 0) // If there are courses
             {
                 for ( int i = 0; i < my_courses.Count; ++i )
                 {
-                    main_tree.Nodes.Add(JsonConvert.SerializeObject(my_courses[i]["name"]).Trim('"'));
+                    TreeNode t = main_tree.Nodes.Add(JsonConvert.SerializeObject(my_courses[i]["name"]).Trim('"'));
+
+                    t.Nodes.Add("Syllabus");
+                    // Get pages for each course and put them as subnodes under the course:
+                    dynamic pages = await HttpUtilities.get_course_pages(BASE_URL, TEST_TOKEN,
+                        JsonConvert.SerializeObject(my_courses[i]["id"]));
+
+                    if (pages.Count > 0) // If there are pages associated with the course
+                    {
+                        for ( int j = 0; j < pages.Count; ++j )
+                        {
+                            t.Nodes.Add(JsonConvert.SerializeObject(pages[j]["title"]).Trim('"'));
+                        }
+                    }
                 }
             }
 

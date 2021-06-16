@@ -9,9 +9,16 @@ namespace canvas_app_v1
     // A class to use HttpRequest to get specific things from Canvas
     static class HttpUtilities
     {
+        // Get courses the instructor is teaching:
         public static async Task<dynamic> get_teacher_courses(string base_url, string token)
         {
             return await HttpRequest.get_get_response(base_url, token, "courses?enrollment_type=teacher");
+        }
+
+        // Get pages from a specific course:
+        public static async Task<dynamic> get_course_pages(string base_url, string token, string course_id)
+        {
+            return await HttpRequest.get_get_response(base_url, token, "courses/" + course_id + "/pages");
         }
     }
 }
