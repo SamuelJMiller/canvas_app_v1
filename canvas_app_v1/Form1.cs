@@ -19,6 +19,7 @@ namespace canvas_app_v1
     {
         private const string APP_NAME = "Canvas Page Manager"; // Name of the app which will not change
         private const string BASE_URL = "https://centralia.instructure.com/api/v1/"; // All API access starts here
+        private const string TEST_TOKEN = "9~Uo3aHRPFGxOZ3XJJXh97uYceOhwk8z4XQKkSCZylTCsJOqHHHIp8aA8BBUbDVRm9";
         private bool page_edited = false; // True if the page the user is editing has been edited and not saved
         private FileUpload fu = new FileUpload();
 
@@ -55,7 +56,7 @@ namespace canvas_app_v1
             RemoveLabels(); // No more need for labels
         }
 
-        private void main_form_Load(object sender, EventArgs e)
+        private async void main_form_Load(object sender, EventArgs e)
         {
             //  Initialize login: (may be implemented when we can get a dev token for OAuth)
             //login_form lf = new login_form(this);
@@ -73,8 +74,19 @@ namespace canvas_app_v1
 
             (main_menu.Items[0] as ToolStripMenuItem).DropDownItems.Add("Log Out");
 
+            // Get courses and put them in the tree:
+            dynamic my_courses = await HttpUtilities.get_teacher_courses(BASE_URL, TEST_TOKEN);
+            
+            if (my_courses.Count > 0)
+            {
+                for ( int i = 0; i < my_courses.Count; ++i )
+                {
+                    main_tree.Nodes.Add(JsonConvert.SerializeObject(my_courses[i]["name"]).Trim('"'));
+                }
+            }
+
             // Expand first class node in TreeView, if exists:
-            if (main_tree.Nodes[0].Nodes.Count > 0) // If node is an actuall class, not just the message
+            if (main_tree.Nodes.Count > 0) // If there are classes
             {
                 main_tree.Nodes[0].Expand();
             }

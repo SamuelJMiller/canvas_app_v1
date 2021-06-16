@@ -29,20 +29,6 @@ namespace canvas_app_v1
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Syllabus");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Page1");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Page2");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Class1", new System.Windows.Forms.TreeNode[] {
-            treeNode9,
-            treeNode10,
-            treeNode11});
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Syllabus");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Page1");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Page2");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Class2", new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode14,
-            treeNode15});
             this.main_menu = new System.Windows.Forms.MenuStrip();
             this.outer_panel = new System.Windows.Forms.Panel();
             this.new_page_button = new System.Windows.Forms.Button();
@@ -50,10 +36,10 @@ namespace canvas_app_v1
             this.inner_panel = new System.Windows.Forms.Panel();
             this.classes_label = new System.Windows.Forms.Label();
             this.right_panel = new System.Windows.Forms.Panel();
-            this.file_in = new System.Windows.Forms.Button();
             this.tut_label_bottom_2 = new System.Windows.Forms.Label();
             this.tut_label_bottom_1 = new System.Windows.Forms.Label();
             this.tut_label_top = new System.Windows.Forms.Label();
+            this.file_in = new System.Windows.Forms.Button();
             this.outer_panel.SuspendLayout();
             this.inner_panel.SuspendLayout();
             this.right_panel.SuspendLayout();
@@ -97,25 +83,6 @@ namespace canvas_app_v1
             | System.Windows.Forms.AnchorStyles.Left)));
             this.main_tree.Location = new System.Drawing.Point(-1, 34);
             this.main_tree.Name = "main_tree";
-            treeNode9.Name = "Node1";
-            treeNode9.Text = "Syllabus";
-            treeNode10.Name = "Node2";
-            treeNode10.Text = "Page1";
-            treeNode11.Name = "Node3";
-            treeNode11.Text = "Page2";
-            treeNode12.Name = "Node0";
-            treeNode12.Text = "Class1";
-            treeNode13.Name = "Node5";
-            treeNode13.Text = "Syllabus";
-            treeNode14.Name = "Node6";
-            treeNode14.Text = "Page1";
-            treeNode15.Name = "Node7";
-            treeNode15.Text = "Page2";
-            treeNode16.Name = "Node4";
-            treeNode16.Text = "Class2";
-            this.main_tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12,
-            treeNode16});
             this.main_tree.Size = new System.Drawing.Size(200, 388);
             this.main_tree.TabIndex = 2;
             this.main_tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.main_tree_AfterSelect);
@@ -145,7 +112,6 @@ namespace canvas_app_v1
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.right_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            //this.right_panel.Controls.Add(this.file_in);
             this.right_panel.Controls.Add(this.tut_label_bottom_2);
             this.right_panel.Controls.Add(this.tut_label_bottom_1);
             this.right_panel.Controls.Add(this.tut_label_top);
@@ -153,16 +119,6 @@ namespace canvas_app_v1
             this.right_panel.Name = "right_panel";
             this.right_panel.Size = new System.Drawing.Size(594, 423);
             this.right_panel.TabIndex = 2;
-            // 
-            // file_in
-            // 
-            //this.file_in.Location = new System.Drawing.Point(105, 265);
-            //this.file_in.Name = "file_in";
-            //this.file_in.Size = new System.Drawing.Size(200, 23);
-            //this.file_in.TabIndex = 4;
-            //this.file_in.Text = "upload file test";
-            //this.file_in.UseVisualStyleBackColor = true;
-            //this.file_in.Click += new System.EventHandler(this.file_in_Click);
             // 
             // tut_label_bottom_2
             // 
@@ -193,6 +149,13 @@ namespace canvas_app_v1
             this.tut_label_top.Size = new System.Drawing.Size(184, 15);
             this.tut_label_top.TabIndex = 0;
             this.tut_label_top.Text = "Select a class page to start editing";
+            // 
+            // file_in
+            // 
+            this.file_in.Location = new System.Drawing.Point(0, 0);
+            this.file_in.Name = "file_in";
+            this.file_in.Size = new System.Drawing.Size(75, 23);
+            this.file_in.TabIndex = 0;
             // 
             // main_form
             // 
