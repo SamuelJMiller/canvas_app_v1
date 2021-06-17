@@ -39,7 +39,7 @@ namespace canvas_app_v1
             this.finish_button.Location = new System.Drawing.Point(42, 89);
             this.finish_button.Name = "finish_button";
             this.finish_button.Size = new System.Drawing.Size(75, 23);
-            this.finish_button.TabIndex = 0;
+            this.finish_button.TabIndex = 1;
             this.finish_button.Text = "Finish";
             this.finish_button.UseVisualStyleBackColor = true;
             this.finish_button.Click += new System.EventHandler(this.finish_button_Click);
@@ -49,7 +49,7 @@ namespace canvas_app_v1
             this.name_box.Location = new System.Drawing.Point(42, 41);
             this.name_box.Name = "name_box";
             this.name_box.Size = new System.Drawing.Size(300, 23);
-            this.name_box.TabIndex = 1;
+            this.name_box.TabIndex = 0;
             // 
             // cancel_button
             // 

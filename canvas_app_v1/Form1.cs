@@ -61,7 +61,40 @@ namespace canvas_app_v1
             RemoveLabels(); // No more need for labels
         }
 
-        private async void main_form_Load(object sender, EventArgs e)
+        // Load the TreeView:
+        private async void load_user_tree()
+        {
+            my_courses = await HttpUtilities.get_teacher_courses(BASE_URL, TEST_TOKEN);
+
+            if (my_courses.Count > 0) // If there are courses
+            {
+                for (int i = 0; i < my_courses.Count; ++i)
+                {
+                    TreeNode t = main_tree.Nodes.Add(JsonConvert.SerializeObject(my_courses[i]["name"]).Trim('"'));
+
+                    t.Nodes.Add("Syllabus");
+                    // Get pages for each course and put them as subnodes under the course:
+                    dynamic pages = await HttpUtilities.get_course_pages(BASE_URL, TEST_TOKEN,
+                        JsonConvert.SerializeObject(my_courses[i]["id"]));
+
+                    if (pages.Count > 0) // If there are pages associated with the course
+                    {
+                        for (int j = 0; j < pages.Count; ++j)
+                        {
+                            t.Nodes.Add(JsonConvert.SerializeObject(pages[j]["title"]).Trim('"'));
+                        }
+                    }
+                }
+            }
+
+            // Expand first class node in TreeView, if exists:
+            if (main_tree.Nodes.Count > 0) // If there are classes
+            {
+                main_tree.Nodes[0].Expand();
+            }
+        }
+
+        private void main_form_Load(object sender, EventArgs e)
         {
             //  Initialize login: (may be implemented when we can get a dev token for OAuth)
             //login_form lf = new login_form(this);
@@ -83,34 +116,7 @@ namespace canvas_app_v1
             new_page_button.Enabled = false;
 
             // Get courses and put them in the tree:
-            my_courses = await HttpUtilities.get_teacher_courses(BASE_URL, TEST_TOKEN);
-            
-            if (my_courses.Count > 0) // If there are courses
-            {
-                for ( int i = 0; i < my_courses.Count; ++i )
-                {
-                    TreeNode t = main_tree.Nodes.Add(JsonConvert.SerializeObject(my_courses[i]["name"]).Trim('"'));
-
-                    t.Nodes.Add("Syllabus");
-                    // Get pages for each course and put them as subnodes under the course:
-                    dynamic pages = await HttpUtilities.get_course_pages(BASE_URL, TEST_TOKEN,
-                        JsonConvert.SerializeObject(my_courses[i]["id"]));
-
-                    if (pages.Count > 0) // If there are pages associated with the course
-                    {
-                        for ( int j = 0; j < pages.Count; ++j )
-                        {
-                            t.Nodes.Add(JsonConvert.SerializeObject(pages[j]["title"]).Trim('"'));
-                        }
-                    }
-                }
-            }
-
-            // Expand first class node in TreeView, if exists:
-            if (main_tree.Nodes.Count > 0) // If there are classes
-            {
-                main_tree.Nodes[0].Expand();
-            }
+            load_user_tree();
         }
 
         private async void main_tree_AfterSelect(object sender, TreeViewEventArgs e)
@@ -280,15 +286,23 @@ namespace canvas_app_v1
             PageNameForm pnf = new PageNameForm();
             pnf.ShowDialog();
 
-            // Creat page at appropriate class:
-            for ( int i = 0; i < my_courses.Count; ++i )
+            if (pnf.FileName() != null)
             {
-                if (JsonConvert.SerializeObject(my_courses[i]["name"]).Trim('"') == current_class.Text)
+                // Creat page at appropriate class:
+                for (int i = 0; i < my_courses.Count; ++i)
                 {
-                    dynamic new_page = await HttpUtilities.create_page(BASE_URL, TEST_TOKEN,
-                        JsonConvert.SerializeObject(my_courses[i]["id"]).Trim('"'), pnf.FileName());
+                    if (JsonConvert.SerializeObject(my_courses[i]["name"]).Trim('"') == current_class.Text)
+                    {
+                        dynamic new_page = await HttpUtilities.create_page(BASE_URL, TEST_TOKEN,
+                            JsonConvert.SerializeObject(my_courses[i]["id"]).Trim('"'), pnf.FileName());
+                    }
                 }
             }
+
+            // Refresh the TreeView:
+            main_tree.Nodes.Clear();
+
+            load_user_tree();
         }
 
         // File upload testing: (Note: since this is now commented, the corresponding lines in the Designer.cs file
