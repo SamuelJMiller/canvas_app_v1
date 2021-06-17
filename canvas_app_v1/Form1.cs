@@ -170,7 +170,15 @@ namespace canvas_app_v1
                                         JsonConvert.SerializeObject(my_courses[i]["id"]).Trim('"'),
                                         JsonConvert.SerializeObject(pages[j]["url"]).Trim('"'));
 
-                                    new_hec.DocumentHTML = JsonConvert.SerializeObject(page["body"]).Trim('"');
+                                    string page_content = JsonConvert.SerializeObject(page["body"]).Trim('"');
+
+                                    if (page_content != "null")
+                                    {
+                                        new_hec.DocumentHTML = page_content;
+                                    } else
+                                    {
+                                        new_hec.DocumentHTML = string.Empty;
+                                    }
                                 }
                             }
                         }
@@ -267,12 +275,20 @@ namespace canvas_app_v1
             }
         }
 
-        private void new_page_button_Click(object sender, EventArgs e)
+        private async void new_page_button_Click(object sender, EventArgs e)
         {
             PageNameForm pnf = new PageNameForm();
             pnf.ShowDialog();
 
-            
+            // Creat page at appropriate class:
+            for ( int i = 0; i < my_courses.Count; ++i )
+            {
+                if (JsonConvert.SerializeObject(my_courses[i]["name"]).Trim('"') == current_class.Text)
+                {
+                    dynamic new_page = await HttpUtilities.create_page(BASE_URL, TEST_TOKEN,
+                        JsonConvert.SerializeObject(my_courses[i]["id"]).Trim('"'), pnf.FileName());
+                }
+            }
         }
 
         // File upload testing: (Note: since this is now commented, the corresponding lines in the Designer.cs file
