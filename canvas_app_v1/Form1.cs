@@ -164,7 +164,6 @@ namespace canvas_app_v1
                             new_hec.DocumentHTML = JsonConvert.SerializeObject(syllabus["syllabus_body"]).Trim('"');
                         } else
                         {
-                            // Kind of inefficient, can we fix the repeated requesting?
                             dynamic pages = await HttpUtilities.get_course_pages(BASE_URL, TEST_TOKEN,
                                 JsonConvert.SerializeObject(my_courses[i]["id"]));
 
@@ -251,7 +250,6 @@ namespace canvas_app_v1
                             hec.DocumentHTML);
                     } else // Update other page
                     {
-                        // Kind of inefficient, can we fix the repeated requesting?
                         dynamic pages = await HttpUtilities.get_course_pages(BASE_URL, TEST_TOKEN,
                             JsonConvert.SerializeObject(my_courses[i]["id"]));
 
